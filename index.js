@@ -5,9 +5,9 @@ import routerCustomer from './routers/customerRouter.js'
 import waiterRouter from './routers/waiterRouter.js'
 import tableRouter from './routers/tableRouter.js'
 import stokRouter from './routers/stokeRouter.js'
-
+import  cors  from 'cors'
 const app = express();
-
+app.use(cors())
 app.use(express.json());
 
 // routers

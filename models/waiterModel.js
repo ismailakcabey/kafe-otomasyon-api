@@ -1,5 +1,7 @@
+// import moduls
 import mongoose from "mongoose";
 
+// waiter Schema
 const waiterSchema = mongoose.Schema({
     waiterNumber : {
         type:Number,
@@ -9,7 +11,7 @@ const waiterSchema = mongoose.Schema({
         type:Number,
         require:true
     },
-    name:{
+    
         firstName:{
             type:String,
             require:true
@@ -17,9 +19,9 @@ const waiterSchema = mongoose.Schema({
         lastName:{
             type:String,
             require:true 
-        }
-    },
-    mail:{
+        },
+    
+    
         eMail:{
             type:String,
             require:true
@@ -28,7 +30,7 @@ const waiterSchema = mongoose.Schema({
             type:String,
             require:true
         }
-    }
+    
 })
 
 export default mongoose.model("waiter",waiterSchema)

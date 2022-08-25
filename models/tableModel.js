@@ -1,5 +1,7 @@
+// import moduls
 import mongoose from "mongoose";
 
+// table Schema
 const tableSchema = mongoose.Schema({
     isWaiterNumber : {
         type:Number,
@@ -9,22 +11,21 @@ const tableSchema = mongoose.Schema({
         type:Boolean,
         require:true
     },
-    products:[
-        {
-          name:{
-            type:String,
-            require:false
-          },
-          price:{
-            type:Number,
-            require:false
-          },
-          stokPiece:{
-            type:Number,
-            require:false
-          }
-        }
-    ],
+    products:
+    [{
+      name:{
+        type:String,
+        require:false
+      },
+      price:{
+        type:Number,
+        require:false
+      },
+      stokPiece:{
+        type:Number,
+        require:false
+      }
+    }],
     orderPrice:{
         type:Number,
         require:false

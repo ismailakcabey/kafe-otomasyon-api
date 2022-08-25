@@ -17,6 +17,18 @@ router.get('/',async(req,res)=>{
     }
 })
 
+router.get('/:id',async(req,res)=>{
+    try {
+        const {id} = req.params
+        const waiter = await waiterModel.findById(id);
+        console.log(waiter)
+        return res.status(200).json(waiter)
+
+    } catch (error) {
+        return res.status(404).json({message : error})
+    }
+})
+
 // post function
 router.post('/',async(req,res)=>{
     try {
@@ -37,6 +49,34 @@ router.delete('/delete/:id',async(req,res)=>{
         return res.status(202).json(waiter)
     } catch (error) {
         return res.status(500).json({message : error.message})
+    }
+})
+
+
+// update function
+router.put('/update/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const {
+            waiterNumber,
+            phoneNumber,
+            firstName,
+            lastName,
+            eMail,
+            password
+        } = req.body
+        const updateWaiter = await waiterModel.findByIdAndUpdate(id, {
+            waiterNumber,
+            phoneNumber,
+            firstName,
+            lastName,
+            eMail,
+            password
+        }, { new: true })
+        console.log(updateWaiter)
+        return res.status(200).json(updateWaiter)
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
     }
 })
 

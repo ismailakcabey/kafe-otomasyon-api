@@ -1,5 +1,8 @@
+// import moduls
 import mongoose from "mongoose";
 
+
+// Stok Schema
 const stokSchema = mongoose.Schema({
     
         price : {

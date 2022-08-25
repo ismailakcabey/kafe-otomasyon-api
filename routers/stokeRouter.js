@@ -18,6 +18,18 @@ router.get('/',async(req,res)=>{
     }
 })
 
+router.get('/:id',async(req,res)=>{
+    try {
+        const {id} = req.params
+        const stok = await stokModel.findById(id);
+        console.log(stok)
+        return res.status(200).json(stok)
+
+    } catch (error) {
+        return res.status(404).json({message : error})
+    }
+})
+
 // post function
 router.post('/',async(req,res)=>{
     try {
@@ -38,6 +50,29 @@ router.delete('/delete/:id',async(req,res)=>{
         return res.status(202).json(stoke)
     } catch (error) {
         return res.status(500).json({message : error.message})
+    }
+})
+
+// put function
+router.put('/update/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const {
+            price,
+
+            piece,
+            name, 
+        } = req.body
+        const updateStok = await stokModel.findByIdAndUpdate(id, {
+            price,
+
+            piece,
+            name,
+        }, { new: true })
+        console.log(updateStok)
+        return res.status(200).json(updateStok)
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
     }
 })
 

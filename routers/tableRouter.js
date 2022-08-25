@@ -17,6 +17,18 @@ router.get('/',async(req,res)=>{
     }
 })
 
+router.get('/:id',async(req,res)=>{
+    try {
+        const {id} = req.params
+        const table = await tableModel.findById(id);
+        console.log(table)
+        return res.status(200).json(table)
+
+    } catch (error) {
+        return res.status(404).json({message : error})
+    }
+})
+
 // post function
 router.post('/',async(req,res)=>{
     try {
@@ -39,6 +51,30 @@ router.delete('/delete/:id',async(req,res)=>{
         return res.status(500).json({message : error.message})
     }
 })
+
+
+
+// update function
+router.put('/update/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const {
+            isWaiterNumber,
+            isActive,
+            products,
+            orderPrice
+        } = req.body
+        const updateTable = await tableModel.findByIdAndUpdate(id, {
+            isWaiterNumber,isActive,orderPrice , products
+        }, { new: true })
+        console.log(updateTable)
+        return res.status(200).json(updateTable)
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+})
+
+
 
 
 // export router
